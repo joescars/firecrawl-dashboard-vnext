@@ -1,5 +1,7 @@
 # Firecrawl Dashboard
 
+This repository continues the original [Firecrawl Dashboard](https://github.com/tekgnosis-net/firecrawl-dashboard), based on upstream **v2.4.0**. Fork-specific changes and container images are maintained here.
+
 A self-hosted monitoring dashboard **and transparent HTTP proxy** for [Firecrawl](https://github.com/mendableai/firecrawl) instances. Point your Firecrawl clients (SDK, curl, other tools) at the dashboard's proxy URL and every request gets transparently forwarded to the real Firecrawl server while being observed and recorded. The dashboard then surfaces rich real-time metrics — operation counts by type, per-client traffic, credit usage over time, top domains, recent errors, live queue depth, Redis health — all derived from the actual traffic it sees, not from guesswork. Crafted with an Apple-inspired design system featuring semantic color tokens, adaptive dark mode, frosted-glass sidebar, and smooth transitions throughout.
 
 ![Dashboard](./screenshots/dashboard.png?v=4)
