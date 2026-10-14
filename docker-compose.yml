@@ -1,6 +1,6 @@
 services:
   dashboard:
-    image: ghcr.io/tekgnosis-net/firecrawl-dashboard:latest
+    image: ghcr.io/joescars/firecrawl-dashboard-vnext:latest
     pull_policy: always
     container_name: firecrawl-dashboard
     command: ["node", "server/dashboard.js"]
@@ -27,7 +27,7 @@ services:
       start_period: 15s
 
   proxy:
-    image: ghcr.io/tekgnosis-net/firecrawl-dashboard:latest
+    image: ghcr.io/joescars/firecrawl-dashboard-vnext:latest
     pull_policy: always
     container_name: firecrawl-proxy
     command: ["node", "server/proxy.js"]

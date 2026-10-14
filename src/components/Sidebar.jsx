@@ -21,7 +21,7 @@ const TOOLS_GROUP_ITEMS = [
 ];
 const TOOLS_GROUP_ROUTES = new Set(TOOLS_GROUP_ITEMS.map(i => i.to));
 
-const REPO_URL = 'https://github.com/tekgnosis-net/firecrawl-dashboard';
+const REPO_URL = 'https://github.com/joescars/firecrawl-dashboard-vnext';
 
 const SIDEBAR_DARK = '#1C1C1E';
 const SIDEBAR_BORDER = '#38383A';

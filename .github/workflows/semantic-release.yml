@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          token: ${{ secrets.RELEASE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -36,10 +36,14 @@ jobs:
       - name: Create Release
         id: release
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
           npx semantic-release
           NEW_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ "$NEW_TAG" = "$PREVIOUS_TAG" ]; then
+            NEW_TAG=""
+          fi
           echo "new_tag=${NEW_TAG}" >> "$GITHUB_OUTPUT"
 
       - name: Trigger Docker Publish
@@ -47,4 +51,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run docker-publish.yml --field tag="${{ steps.release.outputs.new_tag }}"
+          gh workflow run docker-publish.yml \
+            --ref "${{ steps.release.outputs.new_tag }}" \
+            --field tag="${{ steps.release.outputs.new_tag }}"

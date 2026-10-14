@@ -26,7 +26,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tekgnosis-net/firecrawl-dashboard"
+    "url": "https://github.com/joescars/firecrawl-dashboard-vnext"
   },
   "dependencies": {
     "axios": "^1.15.0",

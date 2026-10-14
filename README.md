@@ -55,7 +55,7 @@ The dashboard runs as **two containers** that share a SQLite volume — a UI ser
 ```yaml
 services:
   dashboard:
-    image: ghcr.io/tekgnosis-net/firecrawl-dashboard:latest
+    image: ghcr.io/joescars/firecrawl-dashboard-vnext:latest
     pull_policy: always
     container_name: firecrawl-dashboard
     command: ["node", "server/dashboard.js"]
@@ -82,7 +82,7 @@ services:
       start_period: 15s
 
   proxy:
-    image: ghcr.io/tekgnosis-net/firecrawl-dashboard:latest
+    image: ghcr.io/joescars/firecrawl-dashboard-vnext:latest
     pull_policy: always
     container_name: firecrawl-proxy
     command: ["node", "server/proxy.js"]
@@ -112,14 +112,16 @@ services:
 docker compose up -d
 ```
 
+Images are published from this fork to `ghcr.io/joescars/firecrawl-dashboard-vnext`: pushes to `main` update `latest`, and version tags (`v*.*.*`) publish versioned tags. The first publish creates the GitHub Container Registry package. Set that package's visibility to **Public** in GitHub Packages if the Docker host should pull without authenticating to GHCR.
+
 - **Dashboard UI:** open **http://localhost:3001** and set your Firecrawl URL + (optional) Bull Auth Key in Settings.
 - **Proxy URL for your clients:** point your Firecrawl SDK at **http://localhost:3101** (same-origin paths — e.g. `POST /v1/scrape`). Every request gets logged and appears in the dashboard within seconds.
 
 ### From Source
 
 ```bash
-git clone https://github.com/tekgnosis-net/firecrawl-dashboard.git
-cd firecrawl-dashboard
+git clone https://github.com/joescars/firecrawl-dashboard-vnext.git
+cd firecrawl-dashboard-vnext
 npm install
 npm run dev    # starts dashboard (:3001), proxy (:3101), and vite (:3000) concurrently
 ```
@@ -269,7 +271,7 @@ Every request through the proxy is enqueued into `proxy_operations` with the row
 
 If you find this dashboard useful, please consider giving it a star — it helps others discover the project!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=tekgnosis-net/firecrawl-dashboard&type=Date)](https://star-history.com/#tekgnosis-net/firecrawl-dashboard&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=joescars/firecrawl-dashboard-vnext&type=Date)](https://star-history.com/#joescars/firecrawl-dashboard-vnext&Date)
 
 ## License
 
